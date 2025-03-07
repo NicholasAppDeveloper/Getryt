@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lite_green"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/lite_green"
     tools:context=".SplashActivity">
 
     <TextView
@@ -15,20 +15,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Getryt Technologies Pvt Ltd"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:textSize="30sp"
-        android:text="Getryt Technologies Pvt Ltd"/>
+        android:textStyle="bold" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:visibility="visible" />
 
 </LinearLayout>

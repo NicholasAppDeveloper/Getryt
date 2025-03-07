@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/lite_green"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Guideline
@@ -38,15 +37,12 @@
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
-
-
-    <!-- Company Name TextView -->
     <TextView
         android:id="@+id/slideLeft"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_marginTop="100dp"
+        android:gravity="center"
         android:text="Getryt Technologies Pvt Ltd"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -61,10 +57,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:background="@drawable/card_background"
+        app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        android:background="@drawable/card_background"
         app:layout_constraintBottom_toTopOf="@+id/storageCard"
         app:layout_constraintEnd_toStartOf="@+id/ramCard"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,16 +77,15 @@
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
-    <!-- RAM CardView -->
     <androidx.cardview.widget.CardView
         android:id="@+id/ramCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="8dp"
         android:background="@drawable/card_background"
         app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/batteryCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/batteryCard"
@@ -107,15 +102,14 @@
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
-    <!-- Storage CardView -->
     <androidx.cardview.widget.CardView
         android:id="@+id/storageCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="@android:color/transparent"
         android:background="@drawable/card_background"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         tools:layout_editor_absoluteX="24dp">
@@ -131,31 +125,30 @@
             android:textSize="18sp" />
     </androidx.cardview.widget.CardView>
 
-    <!-- Progress Bar (Centered) -->
     <ProgressBar
         android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:indeterminate="true"
-        style="?android:attr/progressBarStyleLarge"
-        app:layout_constraintTop_toBottomOf="@id/storageCard"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/refreshButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/storageCard" />
 
-    <!-- Refresh Button (Bottom-Right) -->
+
     <ImageButton
         android:id="@+id/refreshButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:layout_margin="16dp"
         android:background="@drawable/rounded_button"
-        android:src="@drawable/refresh"
         android:contentDescription="Refresh"
         android:padding="10dp"
-        app:tint="@color/white"
-        android:layout_margin="16dp"
+        android:src="@drawable/refresh"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

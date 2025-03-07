@@ -21,32 +21,28 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(splashScreen.root)
 
-        // Set Status Bar Color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             window.statusBarColor = resources.getColor(R.color.black, this.theme)
         } else {
             window.statusBarColor = resources.getColor(R.color.black, this.theme)
         }
 
-        // Enable Fullscreen Mode
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         supportActionBar?.hide()
 
-        // Start Slide Animation
         val backgroundImage: TextView = splashScreen.slideLeft
         val slideAnimation = AnimationUtils.loadAnimation(this, R.anim.image_slider)
         backgroundImage.startAnimation(slideAnimation)
 
-        // Show ProgressBar
+
         splashScreen.progressBar.visibility = ProgressBar.VISIBLE
 
-        // Delay for 3 Seconds & Go to MainActivity
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }, 3000) // 3-second delay
+        }, 3000)
     }
 }

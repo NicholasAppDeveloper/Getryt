@@ -18,42 +18,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(mainBinding.root)
 
-        // Initial load
         updateBatteryLevel()
         updateRamUsage()
         updateStorageUsage()
 
         mainBinding.refreshButton.setOnClickListener {
-            // Show ProgressBar and disable the button to prevent multiple clicks
             mainBinding.progressBar.visibility = View.VISIBLE
             mainBinding.refreshButton.isEnabled = false
 
-            // Simulate a delay for loading (1.5 seconds)
             Handler(Looper.getMainLooper()).postDelayed({
-                // Update data
                 updateBatteryLevel()
                 updateRamUsage()
                 updateStorageUsage()
 
-                // Hide ProgressBar and enable the button again
                 mainBinding.progressBar.visibility = View.GONE
                 mainBinding.refreshButton.isEnabled = true
             }, 1500) // Delay for 1.5 seconds
         }
     }
 
-    // ✅ Fetch & Display Battery Level
     private fun updateBatteryLevel() {
         try {
             val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
-            val batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+            val batteryLevel =
+                batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
             mainBinding.batteryTextView.text = "Battery Level: $batteryLevel%"
         } catch (e: Exception) {
             mainBinding.batteryTextView.text = "Battery Level: Unknown"
         }
     }
 
-    // ✅ Fetch & Display RAM Usage
     private fun updateRamUsage() {
         try {
             val totalRamGB = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -77,7 +71,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // 🔹 Format RAM to standard hardware values
     private fun formatRAMSize(ramGB: Int): String {
         return when {
             ramGB <= 2 -> "2 GB"
@@ -94,9 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateStorageUsage() {
         try {
-            val internalStorage = getStorageDetails(Environment.getDataDirectory()) // Internal Storage
-
-            // Fetch External Storage if available (For API 24+)
+            val internalStorage = getStorageDetails(Environment.getDataDirectory())
             val externalStorage = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 val externalDirs = getExternalFilesDirs(null)
                 externalDirs?.getOrNull(1)?.let { getStorageDetails(it) } ?: StorageInfo(0, 0, 0)
@@ -104,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                 getStorageDetails(Environment.getExternalStorageDirectory())
             }
 
-            // Display Storage Data
             val storageText = StringBuilder()
             storageText.append("Internal: ${internalStorage.used} GB used / ${internalStorage.total} GB total\n")
             if (externalStorage.total > 0) {
@@ -132,11 +122,10 @@ class MainActivity : AppCompatActivity() {
 
             StorageInfo(totalGB, usedGB, freeBytes / (1024 * 1024 * 1024))
         } catch (e: Exception) {
-            StorageInfo(0, 0, 0) // Return 0 if something goes wrong
+            StorageInfo(0, 0, 0)
         }
     }
 
-    // ✅ Storage Data Model
     data class StorageInfo(val total: Long, val used: Long, val free: Long)
 
 }
